@@ -69,14 +69,33 @@
 
     <?php
 
-        // if(isset($_POST['ADD'])){
-        //     print($_POST['name']);
-        //     $sql_add = "INSERT INTO " . $table . " (`name`) VALUES (?)"; 
-        //     $stmt = $conn->prepare($sql_add);
-        //     $stmt -> bind_param("s", $_POST['name']);
-        //     $stmt->execute();
-        //     header("Location: /ProjectManagerPHP/?path=" . $_GET['path']);
-        // }
+    // INSERT NEW EMPLOYEE LOGIC
+
+        if(isset($_POST['create_employee'])){
+            $stmt = $conn->prepare('INSERT INTO darbuotojai (name) VALUES (?)');
+            $stmt->bind_param('s', $name);
+            $name = $_POST['name'];
+            
+            $stmt->execute();
+            $stmt->close();
+            header("Location: /PHP-CRUD-Project-Manager/?path=darbuotojai");
+            // header('Location: ' . $_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
+            die;
+        }
+
+    // INSERT NEW PROJECT LOGIC
+
+        if(isset($_POST['create_project'])){
+            $stmt = $conn->prepare('INSERT INTO projektai (name) VALUES (?)');
+            $stmt->bind_param('s', $name);
+            $name = $_POST['name'];
+            
+            $stmt->execute();
+            $stmt->close();
+            header("Location: /PHP-CRUD-Project-Manager/?path=projektai");
+            // header('Location: ' . $_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
+            die;
+        }
 
     // $sql = 'SELECT * FROM darbuotojai';
     // $result = $conn->query($sql);
@@ -93,6 +112,18 @@
     $conn->close();
     ?>
 
+    <br>
+    <form action="" method="POST">
+        <label for="name" style="font-size: 16px; color: grey" >Darbuotojas:</label><br>
+        <input type="text" id="name" name="name" value="" placeholder="Įveskite naujo darbuotojo vardą"><br>
+        <input type="submit" name="create_employee" value="Pridėti">
+    </form>
+    <br>
+    <form action="" method="POST">
+        <label for="name" style="font-size: 16px; color: grey">Projektas:</label><br>
+        <input type="text" id="name" name="name" value="" placeholder="Įveskite naujo projekto pavadinimą"><br>
+        <input type="submit" name="create_project" value="Pridėti">
+    </form>
 </main>
 </body>
 </html>
