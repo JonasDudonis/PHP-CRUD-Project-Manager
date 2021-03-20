@@ -6,8 +6,7 @@
 ## Project features
 - List project and employees + see specific employees assigned to project
 - Create / Update / Delete projects and employees
-- Reassign employees to other project
-- Navigate through folders
+- Reassign employees to other projects
 
 
 ## Installation
@@ -15,7 +14,6 @@
 - Import 'projects.sql' script into local SQL Server (MySQL Workbench) and create a database
 - Use XAMPP, AMPPS or other open-source platform to launch a php interpreter
 - Open the path where you can launch php interpreter, e.g. http//localhost/PHP-CRUD-Project-Manager/
-- 
 
 ## Authors
 [Jonas Dudonis](https://github.com/JonasDudonis)
