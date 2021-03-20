@@ -1,14 +1,24 @@
 body,
 body * {
-    margin-left: 20px;
-    padding: 20px;
-    vertical-align: top;
-    box-sizing: border-box;
-    font-family: sans-serif, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', 
+	margin: 0;
+	padding: 0;
+	vertical-align: top;
+	box-sizing: border-box;
+	font-family: sans-serif, "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS";
+	word-break: break-all;
 }
 
 header {
     display: flex;
     width: 100%;
     flex-direction: column;
+}
+
+.table2 {
+	max-width: 60%;
+
+}
+
+th, tr {
+	
 }
