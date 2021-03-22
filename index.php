@@ -34,18 +34,6 @@
             header("Location: /PHP-CRUD-Project-Manager/?path=" . $_GET['path']);
         }
 
-        if(isset($_POST['update'])){
-            $sql_update = "UPDATE " . $table 
-                        . " SET id=" . $_POST['id'] 
-                        . ", name='" . $_POST['name'] 
-                        . (isset($_POST['proj_id'])? "', proj_id='" . $_POST['proj_id'] : "")
-                        . "' WHERE id=" . $_GET['update'];
-            $stmt = $conn->prepare($sql_update);
-            $stmt->execute();
-            header("Location: /PHP-CRUD-Project-Manager/?path=" . $_GET['path']);
-            // header('Location: ' . $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING']);
-        }
-
 
         $sql = "SELECT " 
             . $table. ".id, " 
@@ -75,15 +63,21 @@
     </header>
 
     <main style="margin-left: 50px; margin-right: 50px;">
-        <div class="table2" style="">
+        <div class="table2">
         <?php
-        echo '<table><th>Id</th><th>Name</th><th>' . ($table === 'projektai' ? 'Darbuotojai' : 'Projektai') . '</th>';
+        echo '<table>
+                <th>Id</th>
+                <th>Name</th>
+                <th>' . ($table === 'projektai' ? 'Darbuotojai' : 'Projektai') . '</th>';
         while ($stmt->fetch()){
-        echo "<tr><td>" . $id . "</td><td>" . $mainProjectName . "</td><td>" . $relatedEmployeeName . "</td>
+        echo 
+        "<tr>
+        <td>" . $id . "</td>
+        <td>" . $mainProjectName . "</td>
+        <td>" . $relatedEmployeeName . "</td>
         <td>
         <button><a href=\"?path=" . $table . "&delete=$id\">DELETE</a></button>
         <button><a href=\"?path=" . $table . "&update=$id\">UPDATE</a></button>
-        <button><a href=\"?path=" . $table . "&assign=$id\">ASSIGN TO PROJECT</a></button>
         </td>
         </tr>"; 
     }
@@ -124,8 +118,6 @@
     $conn->close();
     ?>
     <br>
-
-
     <form action="" method="POST">
         <label for="name" style="font-size: 16px; color: grey" >Darbuotojas:</label><br>
         <input type="text" id="name" name="name" value="" placeholder="Įveskite naujo darbuotojo vardą"><br>
